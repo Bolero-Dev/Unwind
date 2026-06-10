@@ -20,6 +20,7 @@ struct JournalEditor: View {
     @State private var title: String
     @State private var bodyText: String
     @State private var showDeleteConfirm = false
+    @FocusState private var bodyFocused: Bool
 
     private var isNew: Bool { entry == nil }
 
@@ -49,23 +50,37 @@ struct JournalEditor: View {
                     }
                 }
 
-                // Title + body in a single container, split by a soft divider.
-                VStack(alignment: .leading, spacing: 0) {
-                    TextField("Title", text: $title)
-                        .font(.custom("Montserrat-SemiBold", size: 22))
-                        .padding(.horizontal, 18)
-                        .padding(.top, 18)
-                        .padding(.bottom, 4)   // sit the line close under the title
+                // Title + divider + body scroll together as one document — the
+                // title rides up with the text instead of staying pinned while
+                // the body scrolls beneath it.
+                GeometryReader { geo in
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 0) {
+                            TextField("Title", text: $title)
+                                .font(.custom("Montserrat-SemiBold", size: 22))
+                                .padding(.horizontal, 18)
+                                .padding(.top, 18)
+                                .padding(.bottom, 4)   // sit the line close under the title
 
-                    brushLine
+                            brushLine
 
-                    TextEditor(text: $bodyText)
-                        .font(.custom("Montserrat-Regular", size: 17))
-                        .scrollContentBackground(.hidden)
-                        .padding(.horizontal, 12)
-                        .padding(.top, 12)     // writing room below the line
-                        .padding(.bottom, 10)
-                        .frame(maxHeight: .infinity)
+                            TextEditor(text: $bodyText)
+                                .font(.custom("Montserrat-Regular", size: 17))
+                                .scrollContentBackground(.hidden)
+                                .scrollDisabled(true)  // the outer ScrollView scrolls; the body just grows
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.horizontal, 12)
+                                .padding(.top, 12)     // writing room below the line
+                                .padding(.bottom, 10)
+                                .focused($bodyFocused)
+                        }
+                        // Fill the card's visible height so tapping the blank
+                        // space below a short entry starts writing.
+                        .frame(minHeight: geo.size.height, alignment: .top)
+                        .contentShape(Rectangle())
+                        .onTapGesture { bodyFocused = true }
+                    }
+                    .scrollDismissesKeyboard(.interactively)
                 }
                 .warmCard()
                 .padding(.horizontal)
