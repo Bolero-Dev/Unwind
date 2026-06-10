@@ -38,6 +38,9 @@ struct Meditate: View {
     @State private var sessionMinutes = 3
     @State private var remaining = 3 * 60          // seconds left in the session
 
+    @State private var pendingMinutes = 3          // length awaiting confirmation
+    @State private var showSwitchConfirm = false
+
     @State private var breathScale: CGFloat = 1.0  // 1 = resting, maxScale = full inhale
     /// Drives the inhale/exhale phases on their own clock, independent of the
     /// 1-second countdown tick (the phases aren't whole seconds long).
@@ -61,18 +64,18 @@ struct Meditate: View {
 
                 Spacer()
 
-                // Length picker — kept where it was; only changeable while idle.
-                Picker("Length", selection: $sessionMinutes) {
+                // Length picker. Switch freely while idle or paused; a running
+                // session confirms first (handled in requestLength).
+                Picker("Length", selection: Binding(
+                    get: { sessionMinutes },
+                    set: { requestLength($0) }
+                )) {
                     ForEach(lengthOptions, id: \.self) { mins in
                         Text("\(mins) min").tag(mins)
                     }
                 }
                 .pickerStyle(.segmented)
                 .padding(.horizontal, 40)
-                .disabled(session != .idle)
-                .onChange(of: sessionMinutes) { _, newValue in
-                    if session == .idle { remaining = newValue * 60 }
-                }
 
                 Spacer()
             }
@@ -83,6 +86,14 @@ struct Meditate: View {
         .preferredColorScheme(.dark)
         .onReceive(ticker) { _ in tick() }
         .onDisappear { leave() }
+        .confirmationDialog("Switch to \(pendingMinutes) min?",
+                            isPresented: $showSwitchConfirm,
+                            titleVisibility: .visible) {
+            Button("Switch Timer") { commitLength(pendingMinutes) }
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("This ends your current session.")
+        }
     }
 
     // MARK: Breathing circle
@@ -165,6 +176,29 @@ struct Meditate: View {
     }
 
     // MARK: Controls
+
+    /// Picker tapped. Switch freely while idle or paused; a running session
+    /// asks to confirm first so an active meditation isn't lost by accident.
+    private func requestLength(_ minutes: Int) {
+        guard minutes != sessionMinutes else { return }
+        if session == .running {
+            pendingMinutes = minutes
+            showSwitchConfirm = true
+        } else {
+            commitLength(minutes)
+        }
+    }
+
+    /// Apply a new length and reset to a fresh "tap to begin" at that length.
+    private func commitLength(_ minutes: Int) {
+        sessionMinutes = minutes
+        remaining = minutes * 60
+        guard session != .idle else { return }
+        session = .idle
+        breathTask?.cancel()
+        haptics.stopBreath()
+        withAnimation(.easeInOut(duration: 0.4)) { breathScale = 1.0 }
+    }
 
     /// Begin (from idle) or resume (from paused).
     private func start() {
