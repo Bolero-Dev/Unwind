@@ -97,6 +97,15 @@ extension View {
     func headerIcon() -> some View {
         font(.system(size: 22, weight: .semibold))
     }
+
+    /// Lets the user dismiss the keyboard by tapping anywhere that doesn't
+    /// already handle the tap (buttons and text fields keep their priority).
+    func tapToDismissKeyboard() -> some View {
+        onTapGesture {
+            UIApplication.shared.sendAction(
+                #selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        }
+    }
 }
 
 /// Standard screen header from the style guide: a back arrow, a large

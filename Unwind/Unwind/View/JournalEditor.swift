@@ -83,6 +83,7 @@ struct JournalEditor: View {
             }
             .foregroundStyle(.white)
         }
+        .tapToDismissKeyboard()
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .navigationBar)
         .tint(.white)

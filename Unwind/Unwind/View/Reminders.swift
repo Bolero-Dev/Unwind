@@ -191,6 +191,7 @@ struct ReminderEditor: View {
             }
             .foregroundStyle(.white)
         }
+        .tapToDismissKeyboard()
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .navigationBar)
         .tint(.white)
