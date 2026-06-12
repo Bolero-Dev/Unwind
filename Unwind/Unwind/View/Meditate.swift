@@ -12,6 +12,7 @@
 
 import SwiftUI
 import CoreHaptics
+import os
 
 struct Meditate: View {
 
@@ -362,13 +363,29 @@ final class BreathingHaptics {
     /// Spin up the haptic engine for a session. Safe to call repeatedly. The
     /// engine then stays alive across pauses so resuming has no startup lag.
     func start() {
-        guard supportsHaptics else { return }
-        if engine == nil {
-            engine = try? CHHapticEngine()
-            // The system can shut the engine down (e.g. on interruption); restart it.
-            engine?.resetHandler = { [weak self] in try? self?.engine?.start() }
+        guard supportsHaptics else {
+            Log.haptics.info("Haptics unsupported on this device; running silent.")
+            return
         }
-        try? engine?.start()
+        do {
+            if engine == nil {
+                let engine = try CHHapticEngine()
+                // The system can shut the engine down (interruption, background);
+                // these handlers let us see and recover from it.
+                engine.resetHandler = { [weak self] in
+                    Log.haptics.notice("Haptic engine reset; restarting.")
+                    do { try self?.engine?.start() }
+                    catch { Log.haptics.error("Engine restart after reset failed: \(error.localizedDescription)") }
+                }
+                engine.stoppedHandler = { reason in
+                    Log.haptics.notice("Haptic engine stopped (reason \(reason.rawValue)).")
+                }
+                self.engine = engine
+            }
+            try engine?.start()
+        } catch {
+            Log.haptics.error("Failed to start haptic engine: \(error.localizedDescription)")
+        }
     }
 
     /// Start the breathing measure as a LOOPING pattern: crescendo over the
@@ -397,7 +414,8 @@ final class BreathingHaptics {
             activePlayer = player
             try player.start(atTime: CHHapticTimeImmediate)
         } catch {
-            // A failed haptic should never interrupt the session — ignore it.
+            // A failed haptic must never interrupt the session — log and move on.
+            Log.haptics.error("Failed to start breath loop: \(error.localizedDescription)")
         }
     }
 
@@ -463,7 +481,9 @@ final class BreathingHaptics {
         do {
             let pattern = try CHHapticPattern(events: events, parameters: [])
             try engine.makePlayer(with: pattern).start(atTime: 0)
-        } catch { }
+        } catch {
+            Log.haptics.error("Failed to play completion cadence: \(error.localizedDescription)")
+        }
     }
 
     /// Stop the in-flight breath swell (pause / restart). The engine itself

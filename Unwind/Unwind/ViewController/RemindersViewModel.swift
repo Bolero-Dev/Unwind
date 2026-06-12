@@ -11,6 +11,7 @@
 
 import Foundation
 import UserNotifications
+import os
 
 enum ReminderScheduler {
 
@@ -23,10 +24,18 @@ enum ReminderScheduler {
 
         switch settings.authorizationStatus {
         case .notDetermined:
-            return (try? await center.requestAuthorization(options: [.alert, .sound, .badge])) ?? false
+            do {
+                let granted = try await center.requestAuthorization(options: [.alert, .sound, .badge])
+                Log.notifications.info("Notification authorization \(granted ? "granted" : "denied").")
+                return granted
+            } catch {
+                Log.notifications.error("Authorization request failed: \(error.localizedDescription)")
+                return false
+            }
         case .authorized, .provisional, .ephemeral:
             return true
         default:    // .denied
+            Log.notifications.info("Notifications previously denied; reminders won't fire.")
             return false
         }
     }
@@ -57,7 +66,11 @@ enum ReminderScheduler {
                 content: content,
                 trigger: trigger
             )
-            center.add(request)
+            center.add(request) { error in
+                if let error {
+                    Log.notifications.error("Failed to schedule \(request.identifier): \(error.localizedDescription)")
+                }
+            }
         }
     }
 

@@ -7,6 +7,18 @@
 
 import SwiftUI
 import CoreHaptics
+import os
+
+/// App-wide unified logging. Categories let you filter the stream in Console.app
+/// or the Xcode console (filter by subsystem = the app's bundle id). Errors are
+/// recorded rather than silently swallowed, which is what made the on-device
+/// haptics issue hard to trace.
+enum Log {
+    private static let subsystem = Bundle.main.bundleIdentifier ?? "Unwind"
+    static let haptics = Logger(subsystem: subsystem, category: "haptics")
+    static let notifications = Logger(subsystem: subsystem, category: "notifications")
+    static let data = Logger(subsystem: subsystem, category: "data")
+}
 
 extension Color {
     static let jaguar = Color("Jaguar")
