@@ -46,6 +46,9 @@ struct Meditate: View {
     /// 1-second countdown tick (the phases aren't whole seconds long).
     @State private var breathTask: Task<Void, Never>?
 
+    /// Used to pause a running session when the app backgrounds / screen locks.
+    @Environment(\.scenePhase) private var scenePhase
+
     private let haptics = BreathingHaptics()
 
     /// Fires once a second for the countdown. Ignored unless running.
@@ -86,6 +89,7 @@ struct Meditate: View {
         .preferredColorScheme(.dark)
         .onReceive(ticker) { _ in tick() }
         .onDisappear { leave() }
+        .onChange(of: scenePhase) { _, phase in handleScenePhase(phase) }
         .confirmationDialog("Switch to \(pendingMinutes) min?",
                             isPresented: $showSwitchConfirm,
                             titleVisibility: .visible) {
@@ -233,6 +237,17 @@ struct Meditate: View {
         }
     }
 
+    /// Leaving the app or locking the screen mid-session pauses it. iOS stops
+    /// the haptic engine and suspends the countdown the moment we background, so
+    /// pausing keeps the UI honest — and tapping play on return cleanly rebuilds
+    /// the engine and breath loop. Only a true background pauses; a brief banner
+    /// or Control Center peek is merely .inactive and is left alone.
+    private func handleScenePhase(_ phase: ScenePhase) {
+        if phase == .background, session == .running {
+            togglePause()
+        }
+    }
+
     private func togglePause() {
         switch session {
         case .running:
@@ -363,6 +378,10 @@ final class BreathingHaptics {
     func startBreathLoop(inhale: Double, exhale: Double) {
         guard supportsHaptics, let engine else { return }
         do {
+            // iOS stops the engine on background / screen lock, so make sure
+            // it's running before we (re)arm the loop. Idempotent if already up.
+            try engine.start()
+
             let pattern: CHHapticPattern
             if let cached = cyclePattern {
                 pattern = cached
