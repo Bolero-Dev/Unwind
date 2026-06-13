@@ -30,6 +30,7 @@ struct Reminders: View {
                     } label: {
                         Image(systemName: "plus").headerIcon()
                     }
+                    .accessibilityLabel("New reminder")
                 }
 
                 if reminders.isEmpty {
@@ -108,6 +109,7 @@ private struct ReminderRow: View {
             Toggle("", isOn: $reminder.isEnabled)
                 .labelsHidden()
                 .tint(.vividTangerine)
+                .accessibilityLabel("Enable reminder")
                 .onChange(of: reminder.isEnabled) { _, _ in
                     ReminderScheduler.sync(reminder)
                 }
@@ -156,6 +158,7 @@ struct ReminderEditor: View {
                         Button { showDeleteConfirm = true } label: {
                             Image(systemName: "trash").headerIcon()
                         }
+                        .accessibilityLabel("Delete reminder")
                     }
                 }
 
@@ -265,6 +268,8 @@ private struct WeekdaySelector: View {
                         .foregroundStyle(isOn ? Color.midnight : .white)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel(Calendar.current.weekdaySymbols[weekday - 1])
+                .accessibilityAddTraits(isOn ? [.isSelected] : [])
             }
         }
     }

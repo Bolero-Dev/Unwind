@@ -47,6 +47,7 @@ struct JournalEditor: View {
                         Button { showDeleteConfirm = true } label: {
                             Image(systemName: "trash").headerIcon()
                         }
+                        .accessibilityLabel("Delete entry")
                     }
                 }
 

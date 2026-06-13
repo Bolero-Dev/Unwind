@@ -25,6 +25,7 @@ struct JournalEntryList: View {
                     } label: {
                         Image(systemName: "plus").headerIcon()
                     }
+                    .accessibilityLabel("New entry")
                 }
 
                 if entries.isEmpty {

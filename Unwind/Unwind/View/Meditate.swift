@@ -142,6 +142,8 @@ struct Meditate: View {
                     .contentShape(Circle())
                     .frame(width: restDiameter, height: restDiameter)
                     .onTapGesture { start() }
+                    .accessibilityLabel("Begin session")
+                    .accessibilityAddTraits(.isButton)
             }
         }
         .frame(height: restDiameter * maxScale + 24)   // reserve room for full inhale
@@ -166,10 +168,12 @@ struct Meditate: View {
                     Image(systemName: "arrow.counterclockwise")
                         .font(.system(size: 22))
                 }
+                .accessibilityLabel("Restart")
                 Button(action: togglePause) {
                     Image(systemName: session == .running ? "pause.fill" : "play.fill")
                         .font(.system(size: 26))
                 }
+                .accessibilityLabel(session == .running ? "Pause" : "Play")
             }
             .padding(.top, 2)
         }

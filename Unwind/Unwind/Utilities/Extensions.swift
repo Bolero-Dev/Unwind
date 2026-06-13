@@ -84,6 +84,7 @@ struct NavHeader<Trailing: View>: View {
                 Button { dismiss() } label: {
                     Image(systemName: "arrow.left").headerIcon()
                 }
+                .accessibilityLabel("Back")
                 Spacer()
                 trailing
             }
