@@ -1,6 +1,6 @@
 # Unwind — Privacy Policy
 
-_Last updated: [DATE]_
+_Last updated: June 13, 2026_
 
 Unwind is designed to be completely private. This policy explains what that means.
 
@@ -39,7 +39,7 @@ any time.
 Unwind collects no data from anyone, including children.
 
 ## Contact
-Questions about this policy? Contact [YOUR EMAIL].
+Questions about this policy? Contact bolero-dev@proton.me.
 
 ## Changes
 If this policy ever changes, the updated version will be posted here with a new
