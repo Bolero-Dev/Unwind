@@ -10,6 +10,7 @@
 		08280CE829E4AD6200E22AF1 /* UnwindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08280CE729E4AD6200E22AF1 /* UnwindApp.swift */; };
 		08280CEA29E4AD6200E22AF1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08280CE929E4AD6200E22AF1 /* ContentView.swift */; };
 		08280CEC29E4AD6300E22AF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08280CEB29E4AD6300E22AF1 /* Assets.xcassets */; };
+		AA11BB22CC33DD44EE55FF02 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC33DD44EE55FF01 /* PrivacyInfo.xcprivacy */; };
 		08280CF929E4AD6300E22AF1 /* UnwindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08280CF829E4AD6300E22AF1 /* UnwindTests.swift */; };
 		08280D0329E4AD6300E22AF1 /* UnwindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08280D0229E4AD6300E22AF1 /* UnwindUITests.swift */; };
 		08280D0529E4AD6300E22AF1 /* UnwindUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08280D0429E4AD6300E22AF1 /* UnwindUITestsLaunchTests.swift */; };
@@ -63,6 +64,7 @@
 		088B06EC29E4F58100DB8D22 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		088B06F029E4F7C800DB8D22 /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
 		08C72DEC29E4B652009408A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		AA11BB22CC33DD44EE55FF01 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		08C72DEE29E4C53A009408A7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		796637292FCFCAAE00FF1712 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		7966372B2FCFCB2900FF1712 /* JournalEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEditor.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				08C72DEC29E4B652009408A7 /* Info.plist */,
+				AA11BB22CC33DD44EE55FF01 /* PrivacyInfo.xcprivacy */,
 				08280CE729E4AD6200E22AF1 /* UnwindApp.swift */,
 				08280CE929E4AD6200E22AF1 /* ContentView.swift */,
 				088B06F629E4F80C00DB8D22 /* Model */,
@@ -313,6 +316,7 @@
 				088B06D729E4D16A00DB8D22 /* Montserrat-SemiBold.otf in Resources */,
 				088B06DB29E4D18500DB8D22 /* Montserrat-Medium.otf in Resources */,
 				08280CEC29E4AD6300E22AF1 /* Assets.xcassets in Resources */,
+				AA11BB22CC33DD44EE55FF02 /* PrivacyInfo.xcprivacy in Resources */,
 				088B06D929E4D17500DB8D22 /* Montserrat-Regular.otf in Resources */,
 				088B06DD29E4D19B00DB8D22 /* Montserrat-Light.otf in Resources */,
 			);
