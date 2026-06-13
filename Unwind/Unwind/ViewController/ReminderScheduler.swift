@@ -1,5 +1,5 @@
 //
-//  RemindersViewModel.swift
+//  ReminderScheduler.swift
 //  Unwind
 //
 //  Schedules / cancels the local notifications behind each `Reminder`.

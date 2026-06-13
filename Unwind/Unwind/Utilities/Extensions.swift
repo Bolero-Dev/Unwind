@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreHaptics
 import os
 
 /// App-wide unified logging. Categories let you filter the stream in Console.app
@@ -20,83 +19,30 @@ enum Log {
     static let data = Logger(subsystem: subsystem, category: "data")
 }
 
+// MARK: - Theme
+
 extension Color {
     static let jaguar = Color("Jaguar")
     static let midnight = Color("Midnight")
     static let sherpaBlue = Color("SherpaBlue")
     static let blueLagoon = Color("BlueLagoon")
-    static let halfBaked = Color("HalfBaked")
     static let vividTangerine = Color("VividTangerine")
     static let desertSand = Color("DesertSand")
 }
 
-
 extension Gradient {
-   static let blueGradient =  LinearGradient(colors: [Color.jaguar, Color.midnight, Color.sherpaBlue, Color.blueLagoon], startPoint: .top, endPoint: .bottom)
-    
-    static let pinkGradient = LinearGradient(colors: [Color.vividTangerine, Color.desertSand, Color.white], startPoint: .top, endPoint: .bottom)
-    
-    static let launchGradient = LinearGradient(colors: [Color.midnight, Color.sherpaBlue, Color.vividTangerine, Color.desertSand], startPoint: .top, endPoint: .bottom)
-    
- 
-}
+    /// The app's dark background, top to bottom.
+    static let blueGradient = LinearGradient(
+        colors: [.jaguar, .midnight, .sherpaBlue, .blueLagoon],
+        startPoint: .top, endPoint: .bottom)
 
-enum SetUIViewDefaults {
-    
-    case statusDetaultBarStyle
-    case setDefaultBackground
-    case setDefaultfont
-    case errorSettingUIDefaults(Error)
-    case ignoresSafeEdges
-    //this is where I make it so the gradient ignores safe edges
-   
-    
-    var defaultViewSettings: String {
-        switch self {
-        case.statusDetaultBarStyle: return "\(UIStatusBarStyle.darkContent)"
-        case.setDefaultBackground: return "ForegroundStyle(Gradient.blueGradient)"
-        case.setDefaultfont: return "FontVariation(name: Montserrat-Medium, value: 35)"
-        case.errorSettingUIDefaults: return "there was an error setting up the view defaults"
-        case.ignoresSafeEdges: return ""
-        }
-        
-    }
-}
-
-//I would like to make this a function that I can call. it would be trigger animation. and it would be
-
-
-
-
-enum ErrorState: Error {
-    
-    case errorLoadingData
-    case errorSaving
-    case errorReset
-    case errorName
-    
-    var errorLable: String {
-        switch self {
-            
-        case .errorSaving: return "There was an error saving data"
-        case.errorReset: return "There was an error resetting data"
-        case .errorName: return "there was an error loading title"
-        case .errorLoadingData: return "there was an error loading data"
-
-        }
-    }
-}
-
-
-// MARK: - Shared UI (style guide)
-
-extension Gradient {
-    /// Warm translucent fill for content cards / tiles — the peachy "Delicate"
-    /// look from the style guide, sitting over the dark blue background.
+    /// Warm translucent fill for content cards / tiles, over the dark background.
     static let cardFill = LinearGradient(
         colors: [Color.desertSand.opacity(0.45), Color.vividTangerine.opacity(0.30)],
         startPoint: .top, endPoint: .bottom)
 }
+
+// MARK: - Shared UI
 
 extension View {
     /// Rounded warm "card" background used across the app's screens.
@@ -136,8 +82,7 @@ struct NavHeader<Trailing: View>: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Button { dismiss() } label: {
-                    Image(systemName: "arrow.left")
-                        .headerIcon()
+                    Image(systemName: "arrow.left").headerIcon()
                 }
                 Spacer()
                 trailing

@@ -17,11 +17,10 @@
 		088B06D929E4D17500DB8D22 /* Montserrat-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 088B06D829E4D17500DB8D22 /* Montserrat-Regular.otf */; };
 		088B06DB29E4D18500DB8D22 /* Montserrat-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 088B06DA29E4D18500DB8D22 /* Montserrat-Medium.otf */; };
 		088B06DD29E4D19B00DB8D22 /* Montserrat-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 088B06DC29E4D19B00DB8D22 /* Montserrat-Light.otf */; };
-		088B06DF29E4D24100DB8D22 /* MontserratAlternates-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 088B06DE29E4D24100DB8D22 /* MontserratAlternates-Bold.otf */; };
 		088B06E329E4F00600DB8D22 /* Meditate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088B06E229E4F00600DB8D22 /* Meditate.swift */; };
 		088B06E729E4F55300DB8D22 /* Reminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088B06E629E4F55300DB8D22 /* Reminders.swift */; };
 		088B06ED29E4F58100DB8D22 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088B06EC29E4F58100DB8D22 /* Reminder.swift */; };
-		088B06F129E4F7C800DB8D22 /* RemindersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088B06F029E4F7C800DB8D22 /* RemindersViewModel.swift */; };
+		088B06F129E4F7C800DB8D22 /* ReminderScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088B06F029E4F7C800DB8D22 /* ReminderScheduler.swift */; };
 		08C72DEF29E4C53A009408A7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C72DEE29E4C53A009408A7 /* Extensions.swift */; };
 		7966372A2FCFCAAE00FF1712 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796637292FCFCAAE00FF1712 /* JournalEntry.swift */; };
 		7966372C2FCFCB2900FF1712 /* JournalEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7966372B2FCFCB2900FF1712 /* JournalEditor.swift */; };
@@ -59,11 +58,10 @@
 		088B06D829E4D17500DB8D22 /* Montserrat-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.otf"; sourceTree = "<group>"; };
 		088B06DA29E4D18500DB8D22 /* Montserrat-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.otf"; sourceTree = "<group>"; };
 		088B06DC29E4D19B00DB8D22 /* Montserrat-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Light.otf"; sourceTree = "<group>"; };
-		088B06DE29E4D24100DB8D22 /* MontserratAlternates-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MontserratAlternates-Bold.otf"; sourceTree = "<group>"; };
 		088B06E229E4F00600DB8D22 /* Meditate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meditate.swift; sourceTree = "<group>"; };
 		088B06E629E4F55300DB8D22 /* Reminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminders.swift; sourceTree = "<group>"; };
 		088B06EC29E4F58100DB8D22 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
-		088B06F029E4F7C800DB8D22 /* RemindersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersViewModel.swift; sourceTree = "<group>"; };
+		088B06F029E4F7C800DB8D22 /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
 		08C72DEC29E4B652009408A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		08C72DEE29E4C53A009408A7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		796637292FCFCAAE00FF1712 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
@@ -160,7 +158,7 @@
 		088B06F729E4F83600DB8D22 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				088B06F029E4F7C800DB8D22 /* RemindersViewModel.swift */,
+				088B06F029E4F7C800DB8D22 /* ReminderScheduler.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -190,7 +188,6 @@
 				088B06DC29E4D19B00DB8D22 /* Montserrat-Light.otf */,
 				088B06D629E4D16A00DB8D22 /* Montserrat-SemiBold.otf */,
 				088B06DA29E4D18500DB8D22 /* Montserrat-Medium.otf */,
-				088B06DE29E4D24100DB8D22 /* MontserratAlternates-Bold.otf */,
 				088B06D829E4D17500DB8D22 /* Montserrat-Regular.otf */,
 			);
 			path = Fonts;
@@ -315,7 +312,6 @@
 			files = (
 				088B06D729E4D16A00DB8D22 /* Montserrat-SemiBold.otf in Resources */,
 				088B06DB29E4D18500DB8D22 /* Montserrat-Medium.otf in Resources */,
-				088B06DF29E4D24100DB8D22 /* MontserratAlternates-Bold.otf in Resources */,
 				08280CEC29E4AD6300E22AF1 /* Assets.xcassets in Resources */,
 				088B06D929E4D17500DB8D22 /* Montserrat-Regular.otf in Resources */,
 				088B06DD29E4D19B00DB8D22 /* Montserrat-Light.otf in Resources */,
@@ -348,7 +344,7 @@
 				088B06E729E4F55300DB8D22 /* Reminders.swift in Sources */,
 				088B06E329E4F00600DB8D22 /* Meditate.swift in Sources */,
 				08280CE829E4AD6200E22AF1 /* UnwindApp.swift in Sources */,
-				088B06F129E4F7C800DB8D22 /* RemindersViewModel.swift in Sources */,
+				088B06F129E4F7C800DB8D22 /* ReminderScheduler.swift in Sources */,
 				088B06ED29E4F58100DB8D22 /* Reminder.swift in Sources */,
 				7966372E2FCFCB3100FF1712 /* JournalEntryList.swift in Sources */,
 				7966372A2FCFCAAE00FF1712 /* JournalEntry.swift in Sources */,

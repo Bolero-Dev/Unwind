@@ -200,9 +200,14 @@ struct Meditate: View {
         remaining = minutes * 60
         guard session != .idle else { return }
         session = .idle
+        stopBreathing()
+        withAnimation(.easeInOut(duration: 0.4)) { breathScale = 1.0 }
+    }
+
+    /// Cancel the breath animation loop and silence the haptics.
+    private func stopBreathing() {
         breathTask?.cancel()
         haptics.stopBreath()
-        withAnimation(.easeInOut(duration: 0.4)) { breathScale = 1.0 }
     }
 
     /// Begin (from idle) or resume (from paused).
@@ -253,8 +258,7 @@ struct Meditate: View {
         switch session {
         case .running:
             session = .paused
-            breathTask?.cancel()
-            haptics.stopBreath()
+            stopBreathing()
             // Settle to rest so the next inhale starts from the bottom, in sync.
             withAnimation(.easeInOut(duration: 0.8)) { breathScale = 1.0 }
         case .paused:
@@ -268,8 +272,7 @@ struct Meditate: View {
     private func restart() {
         session = .idle
         remaining = sessionMinutes * 60
-        breathTask?.cancel()
-        haptics.stopBreath()
+        stopBreathing()
         withAnimation(.easeInOut(duration: 0.5)) { breathScale = 1.0 }
     }
 
@@ -293,8 +296,7 @@ struct Meditate: View {
 
     private func finish() {
         session = .done
-        breathTask?.cancel()
-        haptics.stopBreath()
+        stopBreathing()
         haptics.completion()
         withAnimation(.easeInOut(duration: 0.6)) { breathScale = 1.0 }
 

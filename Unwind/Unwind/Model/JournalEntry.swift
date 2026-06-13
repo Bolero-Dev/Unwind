@@ -2,7 +2,7 @@
 //  JournalEntry.swift
 //  Unwind
 //
-//  SwiftData model. Replaces the old `JournalModel` (Codable class).
+//  SwiftData model for a single journal entry.
 //
 
 import Foundation
