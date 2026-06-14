@@ -68,18 +68,33 @@ struct ContentView: View {
 }
 
 /// The launch splash: the pre-designed "Unwind" script artwork, filled to the
-/// full screen (its dark top matches the native launch color, so the hand-off
-/// from the system launch screen is seamless).
+/// full screen. It opens on the exact native launch-screen color (Jaguar) and
+/// fades the artwork up from it — so the hand-off from the system launch screen
+/// is an invisible dark screen that gently resolves into the splash, with no
+/// hard "pop" of the gradient.
 private struct SplashView: View {
+    @State private var artworkVisible = false
+
     var body: some View {
-        GeometryReader { geo in
-            Image("LaunchScreen")
-                .resizable()
-                .scaledToFill()
-                .frame(width: geo.size.width, height: geo.size.height)
-                .clipped()
+        ZStack {
+            // Matches UILaunchScreen's Jaguar color exactly, so the
+            // system-launch → SwiftUI hand-off has nothing to flash.
+            Color.jaguar
+                .ignoresSafeArea()
+
+            GeometryReader { geo in
+                Image("LaunchScreen")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: geo.size.width, height: geo.size.height)
+                    .clipped()
+            }
+            .ignoresSafeArea()
+            .opacity(artworkVisible ? 1 : 0)
         }
-        .ignoresSafeArea()
+        .onAppear {
+            withAnimation(.easeIn(duration: 0.5)) { artworkVisible = true }
+        }
     }
 }
 
