@@ -6,11 +6,11 @@ are within them. Fields in [BRACKETS] are things only you can supply.
 ---
 
 ## App Name  (max 30)
-Unwind
+Unwind: Recenter & Breathe   (26)
 
-> ⚠️ "Unwind" alone may already be taken on the App Store. If so, App Store
-> Connect will tell you at creation time. Fallbacks that keep the brand:
-> "Unwind — Breathe & Journal" (26) · "Unwind: Calm" (12) · "Unwind Daily" (12)
+> "Unwind" alone was already taken on the App Store, so the listing uses
+> "Unwind: Recenter & Breathe". The home-screen name stays "Unwind"
+> (CFBundleDisplayName), so users still see just "Unwind" under the icon.
 
 ## Subtitle  (max 30) — pick one
 - Breathe. Journal. Unwind.        (25)
