@@ -6,10 +6,10 @@ are within them. Fields in [BRACKETS] are things only you can supply.
 ---
 
 ## App Name  (max 30)
-Unwind: Recenter & Breathe   (26)
+Unwind: Breathe & Recenter   (26)
 
 > "Unwind" alone was already taken on the App Store, so the listing uses
-> "Unwind: Recenter & Breathe". The home-screen name stays "Unwind"
+> "Unwind: Breathe & Recenter". The home-screen name stays "Unwind"
 > (CFBundleDisplayName), so users still see just "Unwind" under the icon.
 
 ## Subtitle  (max 30) — pick one
