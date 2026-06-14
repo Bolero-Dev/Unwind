@@ -11,6 +11,7 @@
 //
 
 import SwiftUI
+import UIKit
 import CoreHaptics
 import os
 
@@ -91,6 +92,12 @@ struct Meditate: View {
         .onReceive(ticker) { _ in tick() }
         .onDisappear { leave() }
         .onChange(of: scenePhase) { _, phase in handleScenePhase(phase) }
+        // Keep the screen awake only while actively breathing — a hands-free
+        // session shouldn't be cut short by the device's auto-lock. Any other
+        // state (idle, paused, done) restores normal auto-lock immediately.
+        .onChange(of: session) { _, state in
+            UIApplication.shared.isIdleTimerDisabled = (state == .running)
+        }
         .confirmationDialog("Switch to \(pendingMinutes) min?",
                             isPresented: $showSwitchConfirm,
                             titleVisibility: .visible) {
@@ -280,11 +287,14 @@ struct Meditate: View {
         withAnimation(.easeInOut(duration: 0.5)) { breathScale = 1.0 }
     }
 
-    /// Leaving the screen — stop the loop and shut the haptic engine down.
+    /// Leaving the screen — stop the loop, shut the haptic engine down, and
+    /// make sure the screen's auto-lock is restored (don't leak the wake-lock
+    /// past this view's lifetime).
     private func leave() {
         session = .idle
         breathTask?.cancel()
         haptics.shutdown()
+        UIApplication.shared.isIdleTimerDisabled = false
     }
 
     // MARK: Per-second countdown tick
