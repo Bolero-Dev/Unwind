@@ -10,7 +10,6 @@
 		08280CE829E4AD6200E22AF1 /* UnwindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08280CE729E4AD6200E22AF1 /* UnwindApp.swift */; };
 		08280CEA29E4AD6200E22AF1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08280CE929E4AD6200E22AF1 /* ContentView.swift */; };
 		08280CEC29E4AD6300E22AF1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08280CEB29E4AD6300E22AF1 /* Assets.xcassets */; };
-		AA11BB22CC33DD44EE55FF02 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC33DD44EE55FF01 /* PrivacyInfo.xcprivacy */; };
 		08280CF929E4AD6300E22AF1 /* UnwindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08280CF829E4AD6300E22AF1 /* UnwindTests.swift */; };
 		08280D0329E4AD6300E22AF1 /* UnwindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08280D0229E4AD6300E22AF1 /* UnwindUITests.swift */; };
 		08280D0529E4AD6300E22AF1 /* UnwindUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08280D0429E4AD6300E22AF1 /* UnwindUITestsLaunchTests.swift */; };
@@ -26,6 +25,7 @@
 		7966372A2FCFCAAE00FF1712 /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796637292FCFCAAE00FF1712 /* JournalEntry.swift */; };
 		7966372C2FCFCB2900FF1712 /* JournalEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7966372B2FCFCB2900FF1712 /* JournalEditor.swift */; };
 		7966372E2FCFCB3100FF1712 /* JournalEntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7966372D2FCFCB3100FF1712 /* JournalEntryList.swift */; };
+		AA11BB22CC33DD44EE55FF02 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC33DD44EE55FF01 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,11 +64,11 @@
 		088B06EC29E4F58100DB8D22 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		088B06F029E4F7C800DB8D22 /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
 		08C72DEC29E4B652009408A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		AA11BB22CC33DD44EE55FF01 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		08C72DEE29E4C53A009408A7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		796637292FCFCAAE00FF1712 /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 		7966372B2FCFCB2900FF1712 /* JournalEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEditor.swift; sourceTree = "<group>"; };
 		7966372D2FCFCB3100FF1712 /* JournalEntryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryList.swift; sourceTree = "<group>"; };
+		AA11BB22CC33DD44EE55FF01 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -509,6 +509,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C3BD4H8DKG;
@@ -530,6 +531,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Unwind.Unwind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -546,6 +548,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C3BD4H8DKG;
@@ -567,6 +570,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Unwind.Unwind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
