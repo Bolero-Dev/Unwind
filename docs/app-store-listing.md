@@ -22,7 +22,10 @@ A calm, private space to breathe, journal, and slow down — with a gentle hapti
 breathing rhythm that feels like a wooden wind chime. No accounts, no ads, no tracking.
 
 ## Keywords  (max 100 chars, comma-separated, NO spaces after commas)
-meditation,breathing,calm,mindfulness,journal,diary,reminders,relax,anxiety,sleep,wellness,focus,breathe
+meditation,breathing,calm,mindfulness,journal,diary,reminders,relax,anxiety,sleep,wellness,stress
+<!-- 97/100 chars. 'breathe' dropped (already in the app name, which Apple
+     indexes for search); 'focus' swapped for the stronger term 'stress'. -->
+
 
 ## Description  (max 4000)
 Unwind is a calm, private space to breathe, reflect, and remember to slow down.
